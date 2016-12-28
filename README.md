@@ -1,4 +1,4 @@
-# Hello World Dockerfile
+# Hello World
 
 ## Copyright and license
 
