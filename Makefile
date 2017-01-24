@@ -1,18 +1,19 @@
-VERSION ?= 1.0.0
+VERSION ?= latest
+REGISTRY ?= docker.io
 
 default: build
 
 clean:
-	docker rmi bborbe/hello-world:$(VERSION)
+	docker rmi $(REGISTRY)/bborbe/hello-world:$(VERSION)
 
 build:
-	docker build --build-arg VERSION=$(VERSION) --no-cache --rm=true -t bborbe/hello-world:$(VERSION) .
+	docker build --build-arg VERSION=$(VERSION) --no-cache --rm=true -t $(REGISTRY)/bborbe/hello-world:$(VERSION) .
 
 run:
-	docker run -h example.com -p 8080:8080 -v /tmp:/hello-world bborbe/hello-world:$(VERSION)
+	docker run -h example.com -p 8080:8080 -v /tmp:/hello-world $(REGISTRY)/bborbe/hello-world:$(VERSION)
 
 shell:
-	docker run -i -t bborbe/hello-world:$(VERSION) /bin/bash
+	docker run -i -t $(REGISTRY)/bborbe/hello-world:$(VERSION) /bin/bash
 
 upload:
-	docker push bborbe/hello-world:$(VERSION)
+	docker push $(REGISTRY)/bborbe/hello-world:$(VERSION)
