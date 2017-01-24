@@ -10,7 +10,9 @@ build:
 	docker build --build-arg VERSION=$(VERSION) --no-cache --rm=true -t $(REGISTRY)/bborbe/hello-world:$(VERSION) .
 
 run:
-	docker run -h example.com -p 8080:8080 -v /tmp:/hello-world $(REGISTRY)/bborbe/hello-world:$(VERSION)
+	docker run \
+	-p 8080:80 \
+	$(REGISTRY)/bborbe/hello-world:$(VERSION)
 
 shell:
 	docker run -i -t $(REGISTRY)/bborbe/hello-world:$(VERSION) /bin/bash
